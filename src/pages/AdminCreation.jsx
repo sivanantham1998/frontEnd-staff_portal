@@ -197,7 +197,12 @@ export default function AdminCreation() {
           branchId: branchInfo._id,
           branchName: branchInfo.branchName,
         },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
       );
       if (response.status === 201) {
         toast.success("Operation successful!", {

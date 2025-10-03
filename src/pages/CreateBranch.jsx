@@ -42,8 +42,12 @@ export default function CreateBranch() {
 
   const branchCreate = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     if (!validate()) return;
     const response = await axios.post(`${serverUrl}/createBranch`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       withCredentials: true,
     });
     if (response.status) {
