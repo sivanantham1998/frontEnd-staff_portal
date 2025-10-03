@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SensorOccupiedOutlinedIcon from "@mui/icons-material/SensorOccupiedOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
@@ -52,8 +52,14 @@ export default function Dashboard() {
   const branch = state.state || [];
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get(`${serverUrl}/admin/leadForm`, { withCredentials: true })
+      .get(`${serverUrl}/admin/leadForm`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
       .then((s) => {
         // console.log(s.data.data);
         setCountLead(s.data.data);

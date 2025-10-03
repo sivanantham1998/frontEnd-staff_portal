@@ -51,7 +51,7 @@ export default function CreateBranch() {
     } else {
       alert("Error while saving data");
     }
-    console.log("Form submitted ✅", data);
+    console.log("Form submitted ", data);
   };
 
   return (

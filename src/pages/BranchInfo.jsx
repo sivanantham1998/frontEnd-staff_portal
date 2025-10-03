@@ -17,8 +17,14 @@ export default function BranchInfo() {
   // console.log(data);
   // console.log(`${serverUrl}/staff/${data._id}`);
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get(`${serverUrl}/staff/${data._id}`, { withCredentials: true })
+      .get(`${serverUrl}/staff/${data._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
       .then((s) => {
         console.log(s.data);
         if (s.data.male === 0 && s.data.female === 0) {

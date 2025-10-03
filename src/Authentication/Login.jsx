@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -38,6 +38,7 @@ export default function Login() {
       console.log("Login successful:", response.data);
       const in30Minutes = new Date(new Date().getTime() + 30 * 60 * 1000);
       Cookies.set("token", response.data.token, { expires: in30Minutes });
+      localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
     } catch (error) {
       console.error("Login failed:", error);

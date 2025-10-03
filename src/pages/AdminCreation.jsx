@@ -41,8 +41,14 @@ export default function AdminCreation() {
 
   useEffect(() => {
     // Get next AdminId
+    const token = localStorage.getItem("token");
     axios
-      .get(`${serverUrl}/staff/adminNextId`, { withCredentials: true })
+      .get(`${serverUrl}/staff/adminNextId`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
       .then((s) => {
         setNextId(s.data.nextId + "IDM" + new Date().getFullYear());
       });
@@ -72,8 +78,14 @@ export default function AdminCreation() {
 
   useEffect(() => {
     if (!branchInfo?._id) return;
+    const token = localStorage.getItem("token");
     axios
-      .get(`${serverUrl}/staff/admin`, { withCredentials: true })
+      .get(`${serverUrl}/staff/admin`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
       .then((s) => {
         // console.log(s);
 
@@ -93,56 +105,43 @@ export default function AdminCreation() {
     setError((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // ✅ Fixed validation
   const validate = () => {
     let newError = {};
 
-    // Name
     if (!data.name.trim()) newError.name = "Name required";
 
-    // Username
     if (!data.userName.trim()) newError.userName = "User name required";
 
-    // Password
     if (!data.password.trim()) newError.password = "Password required";
 
-    // DOB
     if (!data.dob.trim()) newError.dob = "Date of Birth required";
 
-    // Aadhar
     if (!data.aadhar.trim()) {
       newError.aadhar = "Aadhar number required";
     } else if (!/^\d{12}$/.test(data.aadhar.trim())) {
       newError.aadhar = "Aadhar number must be exactly 12 digits";
     }
 
-    // Phone number
     if (!data.phoneNo.trim()) {
       newError.phoneNo = "Phone number required";
     } else if (!/^\d{10}$/.test(data.phoneNo.trim())) {
       newError.phoneNo = "Phone number must be exactly 10 digits";
     }
 
-    // Address
     if (!data.address.trim()) newError.address = "Address required";
 
-    // Email
     if (!data.email.trim()) {
       newError.email = "Email required";
     } else if (!/^\S+@\S+\.\S+$/.test(data.email.trim())) {
       newError.email = "Enter a valid email address";
     }
 
-    // AdminId
     if (!nextId.trim()) newError.adminId = "AdminId required";
 
-    // Gender
     if (!gender) newError.gender = "Gender required";
 
-    // Role
     if (!role) newError.role = "Role required";
 
-    // Permission
     if (!permission || permission.length === 0)
       newError.permission = "At least one permission required";
 
@@ -179,6 +178,8 @@ export default function AdminCreation() {
     ],
     "lead follwer": ["lead", "home", "todo list"],
   };
+
+  const token = localStorage.getItem("token");
 
   const createAdmin = async (e) => {
     e.preventDefault();

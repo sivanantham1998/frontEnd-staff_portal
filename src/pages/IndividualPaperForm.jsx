@@ -28,8 +28,14 @@ const IndividualPaperForm = forwardRef(({ storedData }, ref) => {
   const [filteredPerson, setFilteredPerson] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .get(`${serverUrl}/branchDetails`, { withCredentials: true })
+      .get(`${serverUrl}/branchDetails`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
       .then((s) => {
         setBranches(s.data.data);
       })
@@ -63,9 +69,14 @@ const IndividualPaperForm = forwardRef(({ storedData }, ref) => {
       if (persons) {
         console.log(persons);
         const branchId = persons[0]._id;
+        const token = localStorage.getItem("token");
+
         // console.log(`${serverUrl}/staff/${branchId}`);
         axios
           .get(`${serverUrl}/staff/${persons[0]._id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
             withCredentials: true,
           })
           .then((s) => {

@@ -3,7 +3,6 @@ import Sidebar from "./Sidebar";
 import "./layout.css";
 import Topbar from "./Topbar";
 import { Outlet, useLocation } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { useServerContext } from "../ApiContext/Server";
 const EXPANDED_WIDTH = 200;
@@ -20,7 +19,6 @@ export default function Layout() {
   const [data, setData] = useState([]);
   const [leadData, setLeadData] = useState([]);
   const location = useLocation();
-  const token = localStorage.getItem("token");
   const toggleSideBar = () => {
     if (isMobile) {
       setIsOpen((prev) => !prev); // open/close overlay
@@ -30,6 +28,8 @@ export default function Layout() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     Promise.all([
       axios.get(`${serverUrl}/branchDetails`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -49,8 +49,8 @@ export default function Layout() {
     const handleSizeChange = () => {
       const mobile = window.innerWidth < MOBILE_BREAKPOINT;
       setIsMobile(mobile);
-      setIsOpen(!mobile); 
-      if (mobile) setIsCollapsed(false); 
+      setIsOpen(!mobile);
+      if (mobile) setIsCollapsed(false);
     };
     window.addEventListener("resize", handleSizeChange);
     handleSizeChange();
