@@ -1,0 +1,59 @@
+.layout_bg {
+  display: grid;
+  grid-template-areas:
+    "sidebar topbar"
+    "sidebar main";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+}
+
+/* Named grid areas */
+.sidebar-area {
+  grid-area: sidebar;
+}
+
+.topbar {
+  grid-area: topbar;
+  background-color: #9d9ad6ff;
+}
+
+.main {
+  grid-area: main;
+  background-color: #9d9ad6ff;
+  overflow: auto;
+}
+
+/* Mobile drawer overlay */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;            /* same as expanded width */
+  height: 100vh;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  z-index: 1001;           /* above backdrop */
+  
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+/* Backdrop behind drawer */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+}
+
+/* Example CSS */
+.sidebar {
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+.sidebar.closed {
+  transform: translateX(-100%);
+}

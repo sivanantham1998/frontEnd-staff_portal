@@ -1,0 +1,48 @@
+.loader-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* full page */
+  width: 100%;
+  background: #fff; /* optional */
+}
+
+.spinner {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: var(--arcWidth) solid transparent;
+  border-top: var(--arcWidth) solid #007bff; /* blue arc */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-logo {
+  width: calc(var(--size) * 0.6); /* logo size relative */
+  height: calc(var(--size) * 0.6);
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+:root {
+  --size: 100px; /* size of the spinner */
+  --arcWidth: 8px; /* width of the arc */
+}

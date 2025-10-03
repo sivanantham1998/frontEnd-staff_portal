@@ -1,0 +1,9 @@
+.formBranch{
+    padding: 20px;
+}
+
+.submit{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}

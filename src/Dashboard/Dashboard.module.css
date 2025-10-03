@@ -1,0 +1,19 @@
+.branchName{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.icons{
+    border-radius: 60%;
+}
+
+.lead,.enquiry{
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(225, 205, 243);
+}
+.enquiry{
+    background-color: rgb(18, 252, 135);
+}

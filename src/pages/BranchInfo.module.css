@@ -1,0 +1,62 @@
+.admin{
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    width: 400px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.admin div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding: 20px;
+}
+
+.profile{
+    width: 100%;
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+}
+.profile div img{
+    width: 60px;
+    
+}
+
+.profile div{
+    display: flex;
+    align-items: center;
+}
+
+.profile div p{
+    font-size: 2rem;
+
+}
+
+.submitBtn{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.adminCreation_div{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.adminCreation_pos{
+    position: absolute;
+    bottom: 0px;
+}

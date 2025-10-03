@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login_bg {
+    background-image: url(https://static.wixstatic.com/media/dec86e_18e1fee518024adea8c06b508f58d933~mv2.jpg/v1/fit/w_2500,h_1330,al_c/dec86e_18e1fee518024adea8c06b508f58d933~mv2.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 400px; 
+    width: 100vw; 
+    backdrop-filter: brightness(1.1) ; 
+    -webkit-backdrop-filter: brightness(1.1) ; 
+    filter: brightness(110%);
+   
+}
+.login_bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3); /* semi-transparent overlay */
+    z-index: 1;
+    pointer-events: none;
+    backdrop-filter: brightness(1.1) ; 
+    -webkit-backdrop-filter: brightness(1.1) ; 
+}
+.login_bg > * {
+    position: relative;
+    z-index: 2;
+}
+
+.lh{
+    line-height: 2.5;
+}

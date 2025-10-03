@@ -1,0 +1,57 @@
+Got it 👍 You want to paginate your pendingLead list so that only 10 records show per page, with page numbers for navigation (e.g., Page 1 = first 10, Page 2 = next 10, etc.).
+
+Here’s how you can do it step by step using React:
+
+1. Add States for Pagination
+const [currentPage, setCurrentPage] = useState(1);
+const recordsPerPage = 10;
+
+2. Slice Data for Current Page
+// Calculate indexes
+const indexOfLastRecord = currentPage * recordsPerPage;
+const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+const currentRecords = pendingLead.slice(indexOfFirstRecord, indexOfLastRecord);
+
+// Total pages
+const totalPages = Math.ceil(pendingLead.length / recordsPerPage);
+
+3. Render Paginated Data
+{selected === "PENDING" && (
+  <Box>
+    {currentRecords.map((item, index) => (
+      <Box key={index}>
+        <Typography>
+          {item.name} - {item.phone}
+        </Typography>
+      </Box>
+    ))}
+
+    {/* Pagination Controls */}
+    <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+      {[...Array(totalPages)].map((_, i) => (
+        <Typography
+          key={i}
+          onClick={() => setCurrentPage(i + 1)}
+          sx={{
+            cursor: "pointer",
+            mx: 1,
+            fontWeight: currentPage === i + 1 ? "bold" : "normal",
+          }}
+        >
+          {i + 1}
+        </Typography>
+      ))}
+    </Box>
+  </Box>
+)}
+
+
+✅ This will:
+
+Show only 10 records per page.
+
+Display page numbers at the bottom.
+
+Bold the active page.
+
+When you click a page number, it updates and shows the next 10 records.
